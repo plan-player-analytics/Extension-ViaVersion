@@ -52,7 +52,8 @@ public class ViaVersionStorage {
                 "id int " + (sqlite ? "PRIMARY KEY" : "NOT NULL AUTO_INCREMENT") + ',' +
                 "uuid varchar(36) NOT NULL UNIQUE," +
                 "protocol_version int NOT NULL" +
-                (sqlite ? "" : "PRIMARY KEY (id)");
+                (sqlite ? "" : ",PRIMARY KEY (id)") +
+                ')';
 
         queryService.execute(sql, PreparedStatement::execute);
     }
@@ -85,7 +86,7 @@ public class ViaVersionStorage {
             queryService.execute(update, statement -> {
                 statement.setInt(1, version);
                 statement.setString(2, uuid.toString());
-                updated.set(statement.execute());
+                updated.set(statement.executeUpdate() > 0);
             }).get(); // Wait
             if (!updated.get()) {
                 queryService.execute(insert, statement -> {
@@ -115,8 +116,8 @@ public class ViaVersionStorage {
                 .orElseThrow(NotReadyException::new);
         final String sql = "SELECT protocol_version, COUNT(1) as count" +
                 " FROM plan_version_protocol" +
-                " INNER JOIN plan_users on plan_version_protocol.uuid=plan_users.uuid" +
-                " WHERE plan_users.server_uuid=?" +
+                " INNER JOIN plan_user_info on plan_version_protocol.uuid=plan_user_info.uuid" +
+                " WHERE plan_user_info.server_uuid=?" +
                 " GROUP BY protocol_version";
         return queryService.query(sql, statement -> {
             statement.setString(1, serverUUID.toString());

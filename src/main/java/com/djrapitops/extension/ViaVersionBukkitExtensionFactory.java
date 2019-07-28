@@ -23,6 +23,7 @@
 package com.djrapitops.extension;
 
 import com.djrapitops.plan.extension.DataExtension;
+import us.myles.ViaVersion.api.Via;
 
 import java.util.Optional;
 
@@ -31,11 +32,11 @@ import java.util.Optional;
  *
  * @author Rsl1122
  */
-public class NewExtensionFactory {
+public class ViaVersionBukkitExtensionFactory {
 
     private boolean isAvailable() {
         try {
-            Class.forName("");
+            Class.forName("us.myles.ViaVersion.ViaVersionPlugin");
             return true;
         } catch (ClassNotFoundException e) {
             return false;
@@ -44,7 +45,10 @@ public class NewExtensionFactory {
 
     public Optional<DataExtension> createExtension() {
         if (isAvailable()) {
-            return Optional.of(new NewExtension());
+            ViaVersionStorage storage = new ViaVersionStorage();
+
+            new ViaBukkitVersionListener(Via.getAPI(), storage).register();
+            return Optional.of(new ViaVersionExtension(storage));
         }
         return Optional.empty();
     }

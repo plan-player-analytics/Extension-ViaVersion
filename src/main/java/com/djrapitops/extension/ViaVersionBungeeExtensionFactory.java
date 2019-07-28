@@ -23,21 +23,33 @@
 package com.djrapitops.extension;
 
 import com.djrapitops.plan.extension.DataExtension;
-import com.djrapitops.plan.extension.annotation.PluginInfo;
-import com.djrapitops.plan.extension.icon.Color;
-import com.djrapitops.plan.extension.icon.Family;
+import us.myles.ViaVersion.api.Via;
+
+import java.util.Optional;
 
 /**
- * Template for new DataExtension.
+ * Factory for DataExtension.
  *
  * @author Rsl1122
  */
-@PluginInfo(name = "", iconName = "", iconFamily = Family.SOLID, color = Color.NONE)
-public class NewExtension implements DataExtension {
+public class ViaVersionBungeeExtensionFactory {
 
-    public NewExtension() {
-        // TODO Add required API classes
+    private boolean isAvailable() {
+        try {
+            Class.forName("us.myles.ViaVersion.BungeePlugin");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
     }
 
-    // TODO Add Provider methods
+    public Optional<DataExtension> createExtension() {
+        if (isAvailable()) {
+            ViaVersionStorage storage = new ViaVersionStorage();
+
+            new ViaBungeeVersionListener(Via.getAPI(), storage).register();
+            return Optional.of(new ViaVersionExtension(storage));
+        }
+        return Optional.empty();
+    }
 }

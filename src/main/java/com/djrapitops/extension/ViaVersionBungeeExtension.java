@@ -22,34 +22,25 @@
 */
 package com.djrapitops.extension;
 
-import com.djrapitops.plan.extension.DataExtension;
+import com.djrapitops.plan.extension.annotation.PluginInfo;
+import com.djrapitops.plan.extension.icon.Color;
+import com.djrapitops.plan.extension.icon.Family;
 import us.myles.ViaVersion.api.Via;
 
-import java.util.Optional;
-
 /**
- * Factory for DataExtension.
+ * Template for ViaVersion.
  *
  * @author Rsl1122
  */
-public class ViaVersionBukkitExtensionFactory {
+@PluginInfo(name = "ViaVersion", iconName = "gamepad", iconFamily = Family.SOLID, color = Color.LIGHT_GREEN)
+public class ViaVersionBungeeExtension extends ViaVersionExtension {
 
-    private boolean isAvailable() {
-        try {
-            Class.forName("us.myles.ViaVersion.ViaVersionPlugin");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+    public ViaVersionBungeeExtension() {
+        this(new ViaVersionStorage());
     }
 
-    public Optional<DataExtension> createExtension() {
-        if (isAvailable()) {
-            ViaVersionStorage storage = new ViaVersionStorage();
-
-            new ViaBukkitVersionListener(Via.getAPI(), storage).register();
-            return Optional.of(new ViaVersionExtension(storage));
-        }
-        return Optional.empty();
+    private ViaVersionBungeeExtension(ViaVersionStorage storage) {
+        super(storage);
+        new ViaBungeeVersionListener(Via.getAPI(), storage).register();
     }
 }

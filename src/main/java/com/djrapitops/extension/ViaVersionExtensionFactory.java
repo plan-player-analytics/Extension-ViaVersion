@@ -23,7 +23,6 @@
 package com.djrapitops.extension;
 
 import com.djrapitops.plan.extension.DataExtension;
-import us.myles.ViaVersion.api.Via;
 
 import java.util.Optional;
 
@@ -32,11 +31,11 @@ import java.util.Optional;
  *
  * @author Rsl1122
  */
-public class ViaVersionBungeeExtensionFactory {
+public class ViaVersionExtensionFactory {
 
-    private boolean isAvailable() {
+    private boolean isAvailable(String className) {
         try {
-            Class.forName("us.myles.ViaVersion.BungeePlugin");
+            Class.forName(className);
             return true;
         } catch (ClassNotFoundException e) {
             return false;
@@ -44,12 +43,23 @@ public class ViaVersionBungeeExtensionFactory {
     }
 
     public Optional<DataExtension> createExtension() {
-        if (isAvailable()) {
-            ViaVersionStorage storage = new ViaVersionStorage();
-
-            new ViaBungeeVersionListener(Via.getAPI(), storage).register();
-            return Optional.of(new ViaVersionExtension(storage));
+        try {
+            return Optional.ofNullable(createNewExtension());
+        } catch (IllegalStateException noSponge) {
+            return Optional.empty();
         }
-        return Optional.empty();
+    }
+
+    private DataExtension createNewExtension() {
+        if (isAvailable("us.myles.ViaVersion.ViaVersionPlugin")) {
+            return new ViaVersionBukkitExtension();
+        }
+        if (isAvailable("us.myles.ViaVersion.BungeePlugin")) {
+            return new ViaVersionBungeeExtension();
+        }
+        if (isAvailable("us.myles.ViaVersion.SpongePlugin")) {
+            return new ViaVersionSpongeExtension();
+        }
+        return null;
     }
 }

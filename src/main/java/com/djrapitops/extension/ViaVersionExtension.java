@@ -82,7 +82,7 @@ public abstract class ViaVersionExtension implements DataExtension {
         storage.getProtocolVersionCounts().entrySet()
                 .stream()
                 .sorted((one, two) -> Integer.compare(two.getValue(), one.getValue()))
-                .forEach(entry -> table.addRow(entry.getKey(), entry.getValue()));
+                .forEach(entry -> table.addRow(getProtocolVersionString(entry.getKey()), entry.getValue()));
 
         return table.build();
     }

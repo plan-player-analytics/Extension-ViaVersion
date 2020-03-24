@@ -22,6 +22,7 @@
 */
 package com.djrapitops.extension;
 
+import com.djrapitops.plan.extension.Caller;
 import com.djrapitops.plan.extension.DataExtension;
 
 import java.util.Optional;
@@ -32,6 +33,8 @@ import java.util.Optional;
  * @author Rsl1122
  */
 public class ViaVersionExtensionFactory {
+
+    private ViaVersionExtension extension;
 
     private boolean isAvailable(String className) {
         try {
@@ -44,13 +47,18 @@ public class ViaVersionExtensionFactory {
 
     public Optional<DataExtension> createExtension() {
         try {
-            return Optional.ofNullable(createNewExtension());
+            extension = createNewExtension();
+            return Optional.ofNullable(extension);
         } catch (IllegalStateException noSponge) {
             return Optional.empty();
         }
     }
 
-    private DataExtension createNewExtension() {
+    public void registerListener(Caller caller) {
+        extension.getListener().register();
+    }
+
+    private ViaVersionExtension createNewExtension() {
         if (isAvailable("us.myles.ViaVersion.ViaVersionPlugin")) {
             return new ViaVersionBukkitExtension();
         }

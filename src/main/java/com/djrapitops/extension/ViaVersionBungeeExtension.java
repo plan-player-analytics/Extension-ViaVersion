@@ -41,6 +41,10 @@ public class ViaVersionBungeeExtension extends ViaVersionExtension {
 
     private ViaVersionBungeeExtension(ViaVersionStorage storage) {
         super(storage);
-        new ViaBungeeVersionListener(Via.getAPI(), storage).register();
+    }
+
+    @Override
+    public ViaListener getListener() {
+        return new ViaBungeeVersionListener(Via.getAPI(), storage);
     }
 }

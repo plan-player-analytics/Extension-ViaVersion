@@ -33,7 +33,7 @@ import us.myles.ViaVersion.api.ViaAPI;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
-public class ViaBukkitVersionListener implements Listener {
+public class ViaBukkitVersionListener implements Listener, ViaListener {
 
     private final ViaAPI viaAPI;
     private final ViaVersionStorage storage;
@@ -49,6 +49,7 @@ public class ViaBukkitVersionListener implements Listener {
         plugin = Bukkit.getPluginManager().getPlugin("Plan");
     }
 
+    @Override
     public void register() {
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }

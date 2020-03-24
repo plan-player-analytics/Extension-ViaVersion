@@ -41,6 +41,10 @@ public class ViaVersionSpongeExtension extends ViaVersionExtension {
 
     private ViaVersionSpongeExtension(ViaVersionStorage storage) {
         super(storage);
-        new ViaSpongeVersionListener(Via.getAPI(), storage).register();
+    }
+
+    @Override
+    public ViaListener getListener() {
+        return new ViaSpongeVersionListener(Via.getAPI(), storage);
     }
 }

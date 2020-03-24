@@ -43,11 +43,13 @@ import java.util.UUID;
 @PluginInfo(name = "ViaVersion", iconName = "gamepad", iconFamily = Family.SOLID, color = Color.LIGHT_GREEN)
 public abstract class ViaVersionExtension implements DataExtension {
 
-    private final ViaVersionStorage storage;
+    protected final ViaVersionStorage storage;
 
     public ViaVersionExtension(ViaVersionStorage storage) {
         this.storage = storage;
     }
+
+    public abstract ViaListener getListener();
 
     @Override
     public CallEvents[] callExtensionMethodsOn() {

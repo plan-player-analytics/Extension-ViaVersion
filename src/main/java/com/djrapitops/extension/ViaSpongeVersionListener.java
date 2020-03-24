@@ -32,7 +32,7 @@ import us.myles.ViaVersion.api.ViaAPI;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
-public class ViaSpongeVersionListener {
+public class ViaSpongeVersionListener implements ViaListener {
 
     private final ViaAPI viaAPI;
     private final ViaVersionStorage storage;
@@ -49,6 +49,7 @@ public class ViaSpongeVersionListener {
                 .orElseThrow(IllegalStateException::new);
     }
 
+    @Override
     public void register() {
         Sponge.getGame().getEventManager().registerListeners(plugin, this);
     }

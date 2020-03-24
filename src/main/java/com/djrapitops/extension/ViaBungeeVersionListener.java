@@ -33,7 +33,7 @@ import us.myles.ViaVersion.api.ViaAPI;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
-public class ViaBungeeVersionListener implements Listener {
+public class ViaBungeeVersionListener implements Listener, ViaListener {
 
     private final ViaAPI viaAPI;
     private final ViaVersionStorage storage;
@@ -50,6 +50,7 @@ public class ViaBungeeVersionListener implements Listener {
         plugin = ProxyServer.getInstance().getPluginManager().getPlugin("Plan");
     }
 
+    @Override
     public void register() {
         ProxyServer.getInstance().getPluginManager().registerListener(plugin, this);
     }

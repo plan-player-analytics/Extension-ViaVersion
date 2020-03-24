@@ -41,6 +41,10 @@ public class ViaVersionBukkitExtension extends ViaVersionExtension {
 
     private ViaVersionBukkitExtension(ViaVersionStorage storage) {
         super(storage);
-        new ViaBukkitVersionListener(Via.getAPI(), storage).register();
+    }
+
+    @Override
+    public ViaListener getListener() {
+        return new ViaBukkitVersionListener(Via.getAPI(), storage);
     }
 }

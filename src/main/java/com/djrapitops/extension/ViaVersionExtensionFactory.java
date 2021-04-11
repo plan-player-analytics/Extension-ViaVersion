@@ -63,7 +63,7 @@ public class ViaVersionExtensionFactory {
             return new ViaVersionBukkitExtension();
         }
         if (isAvailable("us.myles.ViaVersion.VelocityPlugin")) {
-            return null;
+            return new ViaVersionVelocityExtension();
         }
         if (isAvailable("us.myles.ViaVersion.BungeePlugin")) {
             return new ViaVersionBungeeExtension();

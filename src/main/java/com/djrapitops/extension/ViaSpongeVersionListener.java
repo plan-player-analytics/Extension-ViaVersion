@@ -22,12 +22,12 @@
 */
 package com.djrapitops.extension;
 
+import com.viaversion.viaversion.api.ViaAPI;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.plugin.PluginContainer;
-import us.myles.ViaVersion.api.ViaAPI;
 
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;

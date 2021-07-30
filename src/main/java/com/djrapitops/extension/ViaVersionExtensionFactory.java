@@ -59,16 +59,16 @@ public class ViaVersionExtensionFactory {
     }
 
     private ViaVersionExtension createNewExtension() {
-        if (isAvailable("us.myles.ViaVersion.ViaVersionPlugin")) {
+        if (isAvailable("com.viaversion.viaversion.ViaVersionPlugin")) {
             return new ViaVersionBukkitExtension();
         }
-        if (isAvailable("us.myles.ViaVersion.VelocityPlugin")) {
+        if (isAvailable("com.viaversion.viaversion.VelocityPlugin")) {
             return new ViaVersionVelocityExtension();
         }
-        if (isAvailable("us.myles.ViaVersion.BungeePlugin")) {
+        if (isAvailable("com.viaversion.viaversion.BungeePlugin")) {
             return new ViaVersionBungeeExtension();
         }
-        if (isAvailable("us.myles.ViaVersion.SpongePlugin")) {
+        if (isAvailable("com.viaversion.viaversion.SpongePlugin")) {
             return new ViaVersionSpongeExtension();
         }
         return null;

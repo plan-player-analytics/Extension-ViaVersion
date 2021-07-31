@@ -31,7 +31,7 @@ import com.djrapitops.plan.extension.icon.Color;
 import com.djrapitops.plan.extension.icon.Family;
 import com.djrapitops.plan.extension.icon.Icon;
 import com.djrapitops.plan.extension.table.Table;
-import us.myles.ViaVersion.api.protocol.ProtocolVersion;
+import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
 
 import java.util.UUID;
 

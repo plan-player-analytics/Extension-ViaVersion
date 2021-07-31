@@ -22,13 +22,13 @@
 */
 package com.djrapitops.extension;
 
+import com.viaversion.viaversion.api.ViaAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.Plugin;
-import us.myles.ViaVersion.api.ViaAPI;
 
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;

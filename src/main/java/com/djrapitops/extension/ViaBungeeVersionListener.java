@@ -22,13 +22,13 @@
 */
 package com.djrapitops.extension;
 
+import com.viaversion.viaversion.api.ViaAPI;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
-import us.myles.ViaVersion.api.ViaAPI;
 
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;

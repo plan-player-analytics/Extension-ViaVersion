@@ -27,7 +27,7 @@ import com.djrapitops.plan.settings.SchedulerService;
 import com.velocitypowered.api.event.PostOrder;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PostLoginEvent;
-import us.myles.ViaVersion.api.ViaAPI;
+import com.viaversion.viaversion.api.ViaAPI;
 
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;

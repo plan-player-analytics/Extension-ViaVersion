@@ -22,6 +22,7 @@
 */
 package com.djrapitops.extension;
 
+import com.djrapitops.plan.settings.SchedulerService;
 import com.viaversion.viaversion.api.ViaAPI;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.event.PostLoginEvent;
@@ -60,7 +61,7 @@ public class ViaBungeeVersionListener implements Listener, ViaListener {
         UUID uuid = event.getPlayer().getUniqueId();
         int playerVersion = viaAPI.getPlayerVersion(uuid);
 
-        ProxyServer.getInstance().getScheduler().runAsync(plugin, () -> {
+        SchedulerService.getInstance().runAsync(() -> {
             try {
                 storage.storeProtocolVersion(uuid, playerVersion);
             } catch (ExecutionException ignored) {

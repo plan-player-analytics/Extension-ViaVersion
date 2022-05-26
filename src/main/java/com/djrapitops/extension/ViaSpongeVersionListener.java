@@ -22,6 +22,7 @@
 */
 package com.djrapitops.extension;
 
+import com.djrapitops.plan.settings.SchedulerService;
 import com.viaversion.viaversion.api.ViaAPI;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.Listener;
@@ -59,15 +60,12 @@ public class ViaSpongeVersionListener implements ViaListener {
         UUID uuid = event.getTargetEntity().getUniqueId();
         int playerVersion = viaAPI.getPlayerVersion(uuid);
 
-        Sponge.getGame().getScheduler().createTaskBuilder()
-                .async()
-                .execute(() -> {
-                    try {
-                        storage.storeProtocolVersion(uuid, playerVersion);
-                    } catch (ExecutionException ignored) {
-                        // Ignore
-                    }
-                })
-                .submit(plugin);
+        SchedulerService.getInstance().runAsync(() -> {
+            try {
+                storage.storeProtocolVersion(uuid, playerVersion);
+            } catch (ExecutionException ignored) {
+                // Ignore
+            }
+        });
     }
 }

@@ -22,6 +22,7 @@
 */
 package com.djrapitops.extension;
 
+import com.djrapitops.plan.settings.SchedulerService;
 import com.viaversion.viaversion.api.ViaAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -59,7 +60,7 @@ public class ViaBukkitVersionListener implements Listener, ViaListener {
         UUID uuid = event.getPlayer().getUniqueId();
         int playerVersion = viaAPI.getPlayerVersion(uuid);
 
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+        SchedulerService.getInstance().runAsync(() -> {
             try {
                 storage.storeProtocolVersion(uuid, playerVersion);
             } catch (ExecutionException ignored) {

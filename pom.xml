@@ -6,7 +6,7 @@
 
     <groupId>com.djrapitops</groupId>
     <artifactId>Extension-ViaVersion</artifactId>
-    <version>4.0.1-R0.2</version>
+    <version>4.0.1-R0.3</version>
     <build>
         <plugins>
             <plugin>

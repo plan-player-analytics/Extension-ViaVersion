@@ -1,5 +1,5 @@
 /*
-    Copyright(c) 2019 Risto Lahtela (AuroraLS3)
+    Copyright(c) 2019 AuroraLS3
 
     The MIT License(MIT)
 
@@ -20,7 +20,7 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
 */
-package com.djrapitops.extension;
+package net.playeranalytics.extension.viaversion;
 
 import com.djrapitops.plan.extension.annotation.PluginInfo;
 import com.djrapitops.plan.extension.icon.Color;
@@ -33,18 +33,18 @@ import com.viaversion.viaversion.api.Via;
  * @author AuroraLS3
  */
 @PluginInfo(name = "ViaVersion", iconName = "gamepad", iconFamily = Family.SOLID, color = Color.LIGHT_GREEN)
-public class ViaVersionBungeeExtension extends ViaVersionExtension {
+public class ViaVersionSpongeExtension extends ViaVersionExtension {
 
-    public ViaVersionBungeeExtension() {
+    public ViaVersionSpongeExtension() {
         this(new ViaVersionStorage());
     }
 
-    private ViaVersionBungeeExtension(ViaVersionStorage storage) {
+    private ViaVersionSpongeExtension(ViaVersionStorage storage) {
         super(storage);
     }
 
     @Override
     public ViaListener getListener() {
-        return new ViaBungeeVersionListener(Via.getAPI(), storage);
+        return new ViaSpongeVersionListener(Via.getAPI(), storage);
     }
 }

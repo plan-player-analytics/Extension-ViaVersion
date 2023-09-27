@@ -6,7 +6,7 @@
 
     <groupId>net.playeranalytics</groupId>
     <artifactId>Extension-ViaVersion</artifactId>
-    <version>4.0.1-R1.3</version>
+    <version>4.0.1-R1.4</version>
     <build>
         <plugins>
             <plugin>

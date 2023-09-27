@@ -33,6 +33,7 @@ import com.djrapitops.plan.extension.icon.Icon;
 import com.djrapitops.plan.extension.table.Table;
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
 
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -75,13 +76,17 @@ public abstract class ViaVersionExtension implements DataExtension {
         return version != -1 ? ProtocolVersion.getProtocol(version).getName() : "Not Yet Known";
     }
 
+    Map<Integer, Integer> getProtocolVersionCounts() {
+        return storage.getProtocolVersionCounts();
+    }
+
     @TableProvider(tableColor = Color.LIGHT_GREEN)
     public Table protocolTable() {
         Table.Factory table = Table.builder()
                 .columnOne("Version", Icon.called("signal").build())
                 .columnTwo("Users", Icon.called("users").build());
 
-        storage.getProtocolVersionCounts().entrySet()
+        getProtocolVersionCounts().entrySet()
                 .stream()
                 .sorted((one, two) -> Integer.compare(two.getValue(), one.getValue()))
                 .forEach(entry -> table.addRow(getProtocolVersionString(entry.getKey()), entry.getValue()));

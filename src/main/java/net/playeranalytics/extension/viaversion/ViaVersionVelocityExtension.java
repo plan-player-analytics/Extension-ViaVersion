@@ -27,6 +27,8 @@ import com.djrapitops.plan.extension.icon.Color;
 import com.djrapitops.plan.extension.icon.Family;
 import com.viaversion.viaversion.api.Via;
 
+import java.util.Map;
+
 /**
  * Template for ViaVersion.
  *
@@ -46,5 +48,10 @@ public class ViaVersionVelocityExtension extends ViaVersionExtension {
     @Override
     public ViaListener getListener() {
         return new ViaVelocityVersionListener(Via.getAPI(), storage);
+    }
+
+    @Override
+    Map<Integer, Integer> getProtocolVersionCounts() {
+        return storage.getNetworkProtocolVersionCounts();
     }
 }

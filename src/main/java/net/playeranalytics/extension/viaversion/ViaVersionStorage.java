@@ -131,4 +131,22 @@ public class ViaVersionStorage {
             }
         });
     }
+
+    public Map<Integer, Integer> getNetworkProtocolVersionCounts() {
+        UUID serverUUID = queryService.getServerUUID()
+                .orElseThrow(NotReadyException::new);
+        final String sql = "SELECT protocol_version, COUNT(1) as count" +
+                " FROM plan_version_protocol" +
+                " GROUP BY protocol_version";
+        return queryService.query(sql, statement -> {
+            statement.setString(1, serverUUID.toString());
+            try (ResultSet set = statement.executeQuery()) {
+                Map<Integer, Integer> versions = new HashMap<>();
+                while (set.next()) {
+                    versions.put(set.getInt("protocol_version"), set.getInt("count"));
+                }
+                return versions;
+            }
+        });
+    }
 }
